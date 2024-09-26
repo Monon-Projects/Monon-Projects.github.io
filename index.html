@@ -7,26 +7,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Boter Kaas en Eieren</h1>
+    <div class="container">
+        <div class="content">
+            <h1>Boter Kaas en Eieren</h1>
+            <div id="menu">
+                <button onclick="startGame('ai')">Speel tegen de AI</button>
+                <button onclick="startGame('player')">Speel tegen een vriend</button>
+            </div>
 
-    <div id="menu">
-        <button onclick="startGame('ai')">Speel tegen de AI</button>
-        <button onclick="startGame('player')">Speel tegen een vriend</button>
-    </div>
-
-    <div id="game" style="display: none;">
-        <div id="board">
-            <div class="cell" onclick="makeMove(0)"></div>
-            <div class="cell" onclick="makeMove(1)"></div>
-            <div class="cell" onclick="makeMove(2)"></div>
-            <div class="cell" onclick="makeMove(3)"></div>
-            <div class="cell" onclick="makeMove(4)"></div>
-            <div class="cell" onclick="makeMove(5)"></div>
-            <div class="cell" onclick="makeMove(6)"></div>
-            <div class="cell" onclick="makeMove(7)"></div>
-            <div class="cell" onclick="makeMove(8)"></div>
+            <div id="game" style="display: none;">
+                <div id="board">
+                    <div class="cell" onclick="makeMove(0)"></div>
+                    <div class="cell" onclick="makeMove(1)"></div>
+                    <div class="cell" onclick="makeMove(2)"></div>
+                    <div class="cell" onclick="makeMove(3)"></div>
+                    <div class="cell" onclick="makeMove(4)"></div>
+                    <div class="cell" onclick="makeMove(5)"></div>
+                    <div class="cell" onclick="makeMove(6)"></div>
+                    <div class="cell" onclick="makeMove(7)"></div>
+                    <div class="cell" onclick="makeMove(8)"></div>
+                </div>
+                <button onclick="resetGame()">Opnieuw Spelen</button>
+            </div>
         </div>
-        <button onclick="resetGame()">Opnieuw Spelen</button>
     </div>
 
     <script src="script.js"></script>
