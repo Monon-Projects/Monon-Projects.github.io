@@ -3,49 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Boter Kaas en Eieren</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body id="general-page">
-    <header>
-        <h1>Welkom op mijn website!</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="over_mij.html">Over Mij</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<body>
+    <h1>Boter Kaas en Eieren</h1>
 
-    <main>
-        <section class="intro">
-            <h2>Wie ben ik?</h2>
-            <p>Hallo Daar! Ik ben Jelte, 14 jaar oud, ik doe momenteel de Studie: VWO / Gymnasium, ik zit in mijn 2e leerjaar op het moment en ik heb een passie voor verschilende dingen, zoals skateboarden in mijn vrije tijd, maar ook natuurlijk website design en development. Later wil ik bij de Overheid werken, waar weet ik nog niet zeker, maar dat ik zie ik dan wel als ik ouder ben.</p>
-        </section>
+    <div id="menu">
+        <button onclick="startGame('ai')">Speel tegen de AI</button>
+        <button onclick="startGame('player')">Speel tegen een vriend</button>
+    </div>
 
-        <section class="services">
-            <h2>Diensten</h2>
-            <p>Hier zijn enkele van de diensten die ik aanbied:</p>
-            <ul>
-                <li>Website Designing</li>
-                <li>Website Development</li>
-            </ul>
-        </section>
-        
-        <section class="hobbies">
-            <h2>Hobby's</h2>
-            <p>Buiten mijn werk heb ik een paar hobby's:</p>
-            <ul>
-                <li>Gaming</li>
-                <li>Bowling</li>
-                <li>Skateboarding</li>
-            </ul>
-        </section>
-    </main>
+    <div id="game" style="display: none;">
+        <div id="board">
+            <div class="cell" onclick="makeMove(0)"></div>
+            <div class="cell" onclick="makeMove(1)"></div>
+            <div class="cell" onclick="makeMove(2)"></div>
+            <div class="cell" onclick="makeMove(3)"></div>
+            <div class="cell" onclick="makeMove(4)"></div>
+            <div class="cell" onclick="makeMove(5)"></div>
+            <div class="cell" onclick="makeMove(6)"></div>
+            <div class="cell" onclick="makeMove(7)"></div>
+            <div class="cell" onclick="makeMove(8)"></div>
+        </div>
+        <button onclick="resetGame()">Opnieuw Spelen</button>
+    </div>
 
-    <footer>
-        <p>&copy; 2024 Jouw Naam. Alle rechten voorbehouden.</p>
-    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
