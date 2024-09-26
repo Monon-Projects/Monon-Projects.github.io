@@ -1,8 +1,8 @@
 let board = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
-let gameMode = 'player';  // Default modus: tegen een vriend
+let gameMode = 'player';  // Standaardmodus: tegen een vriend
 
-// Start het spel en kies modus
+// Start het spel en kies de modus
 function startGame(mode) {
     gameMode = mode;
     document.getElementById('menu').style.display = 'none';
@@ -17,7 +17,7 @@ function makeMove(index) {
         if (checkWin()) {
             alert(currentPlayer + ' heeft gewonnen!');
             resetGame();
-        } else if (board.includes('') === false) {
+        } else if (!board.includes('')) {
             alert('Gelijkspel!');
             resetGame();
         } else {
@@ -56,4 +56,11 @@ function resetGame() {
     board = ['', '', '', '', '', '', '', '', ''];
     currentPlayer = 'X';
     document.querySelectorAll('.cell').forEach(cell => cell.innerText = '');
+}
+
+// Opgeven functie: Terug naar het menu en reset het bord
+function giveUp() {
+    resetGame(); // Het bord resetten
+    document.getElementById('game').style.display = 'none'; // Verberg het spel
+    document.getElementById('menu').style.display = 'block'; // Toon het menu
 }
