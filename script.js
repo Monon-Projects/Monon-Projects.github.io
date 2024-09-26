@@ -51,7 +51,7 @@ function checkWin() {
     });
 }
 
-// Reset het spel
+// Reset het spel en het bord
 function resetGame() {
     board = ['', '', '', '', '', '', '', '', ''];
     currentPlayer = 'X';
