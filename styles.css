@@ -1,7 +1,7 @@
 /* Algemene stijlen */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #a8c8f2, #004080);
+    background: linear-gradient(to right, #e0f7fa, #b2ebf2, #80deea);
     color: #333;
     margin: 0;
     padding: 0;
@@ -44,7 +44,7 @@ h1, h2 {
 }
 
 .intro, .services, .hobbies {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     padding: 20px;
     margin: 10px auto;
