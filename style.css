@@ -9,35 +9,92 @@ body {
     background: linear-gradient(135deg, #e0e0e0, #a0a0a0, #707070); /* Gradient achtergrond */
 }
 
-/* Container voor de afbeelding */
+/* Container voor het spel */
 .container {
     width: 90vw;
     height: 90vh;
-    background: url('bg_tictactoe') no-repeat center center/cover; /* Afbeelding als achtergrond */
-    filter: opacity(0.85); /* Transparantie toevoegen voor subtiel effect */
-    border-radius: 10px; /* Ronde hoeken voor een mooiere uitstraling */
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Schaduw om diepte te creëren */
+    background: url('image.jpg') no-repeat center center/cover; /* Afbeelding als achtergrond */
+    filter: opacity(0.85); /* Transparantie toevoegen */
+    border-radius: 10px; /* Ronde hoeken */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Schaduw voor diepte */
 }
 
-/* Tekst of inhoud in de container */
+/* Spelinhoud */
 .content {
     color: white;
     font-size: 2rem;
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    padding: 20px;
 }
 
-/* Mobiel-vriendelijke responsiviteit */
+/* Menu knoppen */
+#menu button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#menu button:hover {
+    background-color: #45a049;
+}
+
+/* Bord voor het spel */
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cell:hover {
+    background-color: #e0e0e0;
+}
+
+/* Reset spel knop */
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Responsieve stijl voor mobiele apparaten */
 @media (max-width: 768px) {
     .container {
         width: 95vw;
         height: 80vh;
     }
 
-    .content {
-        font-size: 1.5rem;
+    #board {
+        grid-template-columns: repeat(3, 80px);
+    }
+
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 30px;
     }
 }
