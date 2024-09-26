@@ -1,64 +1,39 @@
-/* Algemene stijlen */
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #e0f7fa, #b2ebf2, #80deea);
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #004080;
-    padding: 20px;
     text-align: center;
-    color: white;
+    font-family: Arial, sans-serif;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
+#menu button {
+    margin: 10px;
+    padding: 10px 20px;
     font-size: 18px;
 }
 
-nav ul li a:hover {
-    text-decoration: underline;
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 5px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-main {
-    padding: 20px;
-    text-align: center;
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    cursor: pointer;
 }
 
-h1, h2 {
-    color: #004080;
+.cell:hover {
+    background-color: #e0e0e0;
 }
 
-.intro, .services, .hobbies {
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px auto;
-    width: 80%;
-    max-width: 600px;
-    text-align: left;
-}
-
-footer {
-    background-color: #004080;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: relative; /* Verander hier naar 'fixed' als je wilt dat het onderaan blijft */
-    bottom: 0;
-    width: 100%;
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
 }
