@@ -54,7 +54,7 @@ body {
 .cell {
     width: 100px;
     height: 100px;
-    background-color: #c0c0c0;
+    background-color: #3f3f3f;
     display: flex;
     align-items: center;
     justify-content: center;
