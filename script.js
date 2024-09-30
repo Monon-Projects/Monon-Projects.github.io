@@ -15,10 +15,10 @@ function makeMove(index) {
         board[index] = currentPlayer;
         document.querySelectorAll('.cell')[index].innerText = currentPlayer;
         if (checkWin()) {
-            alert(currentPlayer + ' heeft gewonnen!');
+            alert(currentPlayer + ' Has won!');
             resetGame();
         } else if (!board.includes('')) {
-            alert('Gelijkspel!');
+            alert('It is a tie!');
             resetGame();
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
