@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boter Kaas en Eieren</title>
+    <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="content">
-            <h1>Boter Kaas en Eieren</h1>
+            <h1>Tic-Tac-Toe</h1>
             <div id="menu">
-                <button onclick="startGame('ai')">Speel tegen de AI</button>
-                <button onclick="startGame('player')">Speel tegen een vriend</button>
+                <button onclick="startGame('ai')">Play Against The AI</button>
+                <button onclick="startGame('player')">Play against a friend</button>
             </div>
 
             <div id="game" style="display: none;">
@@ -27,8 +27,8 @@
                     <div class="cell" onclick="makeMove(7)"></div>
                     <div class="cell" onclick="makeMove(8)"></div>
                 </div>
-                <button onclick="resetGame()">Opnieuw Spelen</button>
-                <button onclick="giveUp()">Opgeven en terug naar het menu</button> <!-- Opgeven knop -->
+                <button onclick="resetGame()">Play Again</button>
+                <button onclick="giveUp()">Forfeit and return to Home</button> <!-- Opgeven knop -->
             </div>
         </div>
     </div>
