@@ -67,12 +67,14 @@ function giveUp() {
 
 // Laat de "How to Play" modal zien
 function showHowToPlay() {
+    document.getElementById('howToPlayText').style.display = 'block'; // Toon de uitlegtekst
     document.getElementById('howToPlayModal').style.display = 'block';
 }
 
 // Sluit de "How to Play" modal
 function closeHowToPlay() {
     document.getElementById('howToPlayModal').style.display = 'none';
+    document.getElementById('howToPlayText').style.display = 'none'; // Verberg de uitlegtekst bij sluiten
 }
 
 // Voeg event listener toe voor de How to Play-knop
