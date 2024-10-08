@@ -13,6 +13,7 @@
             <div id="menu">
                 <button onclick="startGame('ai')">𝓐𝓲</button>
                 <button onclick="startGame('player')">𝓛𝓸𝓬𝓪𝓵</button>
+                <button onclick="showHowToPlay()">How to Play</button> <!-- Nieuwe knop voor uitleg -->
             </div>
 
             <div id="game" style="display: none;">
@@ -30,6 +31,21 @@
                 <button onclick="resetGame()">𝓣𝓻𝔂 𝓐𝓰𝓪𝓲𝓷</button>
                 <button onclick="giveUp()">𝓡𝓮𝓽𝓾𝓻𝓷 𝓽𝓸 𝓗𝓸𝓶𝓮</button> <!-- Opgeven knop -->
             </div>
+        </div>
+    </div>
+
+    <!-- How to Play Popup -->
+    <div id="howToPlayModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeHowToPlay()">&times;</span>
+            <h2>How to Play Tic-Tac-Toe</h2>
+            <p>
+                Tic-Tac-Toe is a two-player game, where one player plays with 'X' and the other with 'O'. 
+                Players take turns choosing a space on the 3x3 board. The goal is to get three of your symbols in a row.
+                This can be horizontal, vertical or diagonal. 
+                If all squares are filled and no one has won, the game ends in a draw.
+            </p>
+            <button onclick="closeHowToPlay()">Sluiten</button>
         </div>
     </div>
 
