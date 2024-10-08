@@ -1,3 +1,4 @@
+/* Algemeen voor body en container */
 body {
     margin: 0;
     padding: 0;
@@ -8,17 +9,15 @@ body {
     background: linear-gradient(135deg, #e0e0e0, #a0a0a0, #707070); /* Gradient achtergrond */
 }
 
-/* Container voor het spel */
 .container {
     width: 90vw;
     height: 90vh;
-    background: url('path/to/your/image.jpg') no-repeat center center/cover; /* Afbeelding als achtergrond */
-    filter: opacity(0.85); /* Transparantie toevoegen */
-    border-radius: 10px; /* Ronde hoeken */
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Schaduw voor diepte */
+    background: url('path/to/your/image.jpg') no-repeat center center/cover;
+    filter: opacity(0.85);
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Spelinhoud */
 .content {
     color: white;
     font-size: 2rem;
@@ -26,7 +25,6 @@ body {
     padding: 20px;
 }
 
-/* Menu knoppen */
 #menu button, #game button {
     margin: 10px;
     padding: 10px 20px;
@@ -42,45 +40,33 @@ body {
     background-color: #45a049;
 }
 
-/* Bord voor het spel */
-#board {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.cell {
-    width: 100px;
-    height: 100px;
-    background-color: #3f3f3f;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
+/* How to Play modal styling */
+#howToPlayButton {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
 }
 
-.cell:hover {
-    background-color: #e0e0e0;
+#howToPlayButton:hover {
+    background-color: #e68900;
 }
 
-/* Popup voor de How to Play modal */
+/* Modal stijl */
 .modal {
-    display: none;
+    display: none; /* Verberg modal standaard */
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Transparante zwarte achtergrond */
+    background-color: rgba(0, 0, 0, 0.5); /* Zwarte achtergrond met transparantie */
 }
 
-/* Inhoud van de modal */
 .modal-content {
     background-color: #fff;
     margin: 15% auto;
@@ -89,9 +75,9 @@ body {
     width: 80%;
     max-width: 500px;
     border-radius: 10px;
+    text-align: center;
 }
 
-/* Sluitknop */
 .close {
     color: #aaa;
     float: right;
@@ -99,14 +85,12 @@ body {
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
 
-/* Responsieve stijl voor mobiele apparaten */
 @media (max-width: 768px) {
     .container {
         width: 95vw;
