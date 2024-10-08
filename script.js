@@ -60,7 +60,17 @@ function resetGame() {
 
 // Opgeven functie: Terug naar het menu en reset het bord
 function giveUp() {
-    resetGame(); // Het bord resetten
-    document.getElementById('game').style.display = 'none'; // Verberg het spel
-    document.getElementById('menu').style.display = 'block'; // Toon het menu
+    resetGame();
+    document.getElementById('game').style.display = 'none';
+    document.getElementById('menu').style.display = 'block';
+}
+
+// Laat de "How to Play" modal zien
+function showHowToPlay() {
+    document.getElementById('howToPlayModal').style.display = 'block';
+}
+
+// Sluit de "How to Play" modal
+function closeHowToPlay() {
+    document.getElementById('howToPlayModal').style.display = 'none';
 }
