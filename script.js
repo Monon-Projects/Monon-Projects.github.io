@@ -67,10 +67,13 @@ function giveUp() {
 
 // Laat de "How to Play" modal zien
 function showHowToPlay() {
-    const howToPlayText = "Tic-Tac-Toe is een spel voor twee spelers, waarbij de ene speler speelt met 'X' en de andere met 'O'. Spelers kiezen om de beurt een vakje op het 3x3 bord. Het doel is om drie van je symbolen op een rij te krijgen. Dit kan horizontaal, verticaal of diagonaal. Als alle vakjes gevuld zijn en niemand heeft gewonnen, eindigt het spel in een gelijkspel.";
+    const howToPlayText = 
+        "Tic-Tac-Toe is een spel voor twee spelers. De spelers kiezen om de beurt een vakje op het bord. " +
+        "Het doel is om drie van je symbolen op een rij te krijgen (horizontaal, verticaal of diagonaal). " +
+        "Als alle vakjes gevuld zijn en niemand heeft gewonnen, eindigt het spel in een gelijkspel.";
     
     document.getElementById('howToPlayText').innerText = howToPlayText; // Voeg de tekst toe
-    document.getElementById('howToPlayModal').style.display = 'block';
+    document.getElementById('howToPlayModal').style.display = 'block'; // Toon de modal
 }
 
 // Sluit de "How to Play" modal
