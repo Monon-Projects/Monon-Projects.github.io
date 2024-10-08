@@ -74,3 +74,6 @@ function showHowToPlay() {
 function closeHowToPlay() {
     document.getElementById('howToPlayModal').style.display = 'none';
 }
+
+// Voeg event listener toe voor de How to Play-knop
+document.getElementById('howToPlayButton').addEventListener('click', showHowToPlay);
