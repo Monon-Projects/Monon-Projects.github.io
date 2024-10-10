@@ -1,109 +1,65 @@
-/* Algemeen voor body en container */
-body {
+* {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #e0e0e0, #a0a0a0, #707070); /* Gradient achtergrond */
+    box-sizing: border-box;
 }
 
-.container {
-    width: 90vw;
-    height: 90vh;
-    background: url('image.jpg') no-repeat center center/cover;
-    filter: opacity(0.85);
-    border-radius: 10px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #000080, #00bfff, #000000); /* Donkerblauw naar lichtblauw naar zwart */
+    color: #ffffff;
 }
 
-.content {
-    color: white;
-    font-size: 2rem;
-    text-align: center;
+header {
+    background-color: rgba(0, 0, 0, 0.7); /* Half transparante zwarte achtergrond */
     padding: 20px;
-}
-
-#menu button, #game button {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #4CAF50;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#menu button:hover, #game button:hover {
-    background-color: #45a049;
-}
-
-/* How to Play modal styling */
-#howToPlayButton {
-    background-color: #ff9800;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-#howToPlayButton:hover {
-    background-color: #e68900;
-}
-
-/* Modal stijl */
-.modal {
-    display: none; /* Verberg modal standaard */
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Zwarte achtergrond met transparantie */
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 10px;
     text-align: center;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.logo {
+    width: 150px;
 }
 
-.close:hover, .close:focus {
-    color: #000;
+nav ul {
+    list-style-type: none;
+    margin: 10px 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #ffffff;
     text-decoration: none;
-    cursor: pointer;
 }
 
-@media (max-width: 768px) {
-    .container {
-        width: 95vw;
-        height: 80vh;
-    }
+section {
+    padding: 20px;
+    margin: 20px 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Half transparante zwarte achtergrond voor leesbaarheid */
+    border-radius: 8px;
+}
 
-    #board {
-        grid-template-columns: repeat(3, 80px);
-    }
+section h2 {
+    margin-bottom: 15px;
+    color: #00bfff; /* Lichtblauwe tekst voor titels */
+}
 
-    .cell {
-        width: 80px;
-        height: 80px;
-        font-size: 30px;
-    }
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #202020;
+    margin-top: 20px;
+    border-top: 2px solid #00bfff; /* Lichtblauwe bovenlijn in de footer */
+}
+
+footer p {
+    color: #00bfff; /* Tekst in lichtblauw voor een mooie contrast */
 }
