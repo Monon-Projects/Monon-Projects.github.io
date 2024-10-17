@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.classList.contains('select-account-btn')) {
             const selectedUser = e.target.getAttribute('data-username');
             adminHeader.textContent = `Admin weergave: ${selectedUser}`;
-            displayAgenda(selectedUser);
+            displayAgenda(selectedUser); // Weergave van geselecteerde agenda
         }
     });
 
