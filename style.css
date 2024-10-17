@@ -31,7 +31,8 @@ body {
 }
 
 .auth-section,
-.agenda-section {
+.agenda-section,
+.admin-section {
     margin-bottom: 20px;
 }
 
@@ -85,6 +86,21 @@ input.input-field {
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
 }
 
 .hidden {
