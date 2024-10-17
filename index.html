@@ -41,9 +41,19 @@
         <!-- Admin gedeelte -->
         <div id="admin-section" class="admin-section hidden">
             <h2>Beheer Planners (Admin)</h2>
-            <ul id="admin-agenda-list" class="agenda-list"></ul>
+            <h3>Selecteer een account:</h3>
+            <select id="user-select" class="input-field"></select>
+            <button id="view-account-btn" class="btn">Bekijk Account</button>
             <h3>Log uit</h3>
             <button id="admin-logout-btn" class="btn btn-logout">Log uit</button>
+        </div>
+
+        <div id="selected-account" class="hidden">
+            <h2>Admin Weergave</h2>
+            <h3 id="account-name"></h3>
+            <h4>Agenda:</h4>
+            <ul id="admin-agenda-list" class="agenda-list"></ul>
+            <button id="delete-task-btn" class="btn">Verwijder Taak</button>
         </div>
     </div>
 </body>
