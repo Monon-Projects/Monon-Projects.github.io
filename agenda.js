@@ -2,14 +2,12 @@
 const authSection = document.getElementById('auth-section');
 const agendaSection = document.getElementById('agenda-section');
 const adminSection = document.getElementById('admin-section');
-const usernameInput = document.getElementById('username');
-const passwordInput = document.getElementById('password');
-const authMessage = document.getElementById('auth-message');
-const userNameDisplay = document.getElementById('user-name');
-const agendaList = document.getElementById('agenda-list');
-const eventNameInput = document.getElementById('event-name');
-const eventDateInput = document.getElementById('event-date');
+const userSelect = document.getElementById('user-select');
+const viewAccountBtn = document.getElementById('view-account-btn');
+const selectedAccountSection = document.getElementById('selected-account');
+const accountNameDisplay = document.getElementById('account-name');
 const adminAgendaList = document.getElementById('admin-agenda-list');
+const deleteTaskBtn = document.getElementById('delete-task-btn');
 
 // Knoppen
 const registerBtn = document.getElementById('register-btn');
@@ -19,8 +17,8 @@ const logoutBtn = document.getElementById('logout-btn');
 const adminLogoutBtn = document.getElementById('admin-logout-btn');
 
 // Admin gegevens
-const adminUsername = "Adminestrator";
-const adminPassword = "Admin";
+const adminUsername = "admin";
+const adminPassword = "admin123";
 
 // Gebruiker opslaan in Local Storage met wachtwoord
 function saveUser(username, password) {
@@ -58,7 +56,7 @@ function login(username, password) {
     if (username === adminUsername && password === adminPassword) {
         authSection.classList.add('hidden');
         adminSection.classList.remove('hidden');
-        displayAdminAgenda();
+        loadUserSelect();
         return;
     }
 
@@ -97,11 +95,85 @@ function displayAgenda(username) {
 }
 
 // Admin agenda weergeven
-function displayAdminAgenda() {
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+function displayAdminAgenda(username) {
+    const agenda = getUserAgenda(username);
     adminAgendaList.innerHTML = '';
+    agenda.forEach((event, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${event.name} op ${event.date}`;
+        adminAgendaList.appendChild(li);
+    });
+}
+
+// Gebruikers laden in de select
+function loadUserSelect() {
+    userSelect.innerHTML = '';
+    const users = JSON.parse(localStorage.getItem('users')) || [];
     users.forEach(user => {
         if (user.username !== adminUsername) {
-            const userAgenda = user.agenda.map(event => `${event.name} op ${event.date}`).join(', ');
-            const li = document.createElement('li');
-            li
+            const option = document.createElement('option');
+            option.value = user.username;
+            option.textContent = user.username;
+            userSelect.appendChild(option);
+        }
+    });
+}
+
+// Account bekijken
+viewAccountBtn.addEventListener('click', () => {
+    const selectedUsername = userSelect.value;
+    accountNameDisplay.textContent = selectedUsername;
+    displayAdminAgenda(selectedUsername);
+    selectedAccountSection.classList.remove('hidden');
+});
+
+// Taak verwijderen
+deleteTaskBtn.addEventListener('click', () => {
+    const selectedUsername = userSelect.value;
+    const agenda = getUserAgenda(selectedUsername);
+    if (agenda.length > 0) {
+        agenda.pop(); // Verwijdert de laatste taak als voorbeeld
+        saveUserAgenda(selectedUsername, agenda);
+        displayAdminAgenda(selectedUsername); // Verfris de agenda-weergave
+    }
+});
+
+// Evenement toevoegen
+addEventBtn.addEventListener('click', () => {
+    const username = userNameDisplay.textContent;
+    const eventName = eventNameInput.value;
+    const eventDate = eventDateInput.value;
+
+    if (eventName && eventDate) {
+        const agenda = getUserAgenda(username);
+        agenda.push({ name: eventName, date: eventDate });
+        saveUserAgenda(username, agenda);
+        displayAgenda(username);
+        eventNameInput.value = '';
+        eventDateInput.value = '';
+    }
+});
+
+// Log out
+logoutBtn.addEventListener('click', () => {
+    authSection.classList.remove('hidden');
+    agendaSection.classList.add('hidden');
+});
+
+adminLogoutBtn.addEventListener('click', () => {
+    authSection.classList.remove('hidden');
+    adminSection.classList.add('hidden');
+});
+
+// Event listeners voor registratie en login
+registerBtn.addEventListener('click', () => {
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+    register(username, password);
+});
+
+loginBtn.addEventListener('click', () => {
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+    login(username, password);
+});
