@@ -1,52 +1,22 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monon Planner</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1 class="main-title">Monon Planner</h1>
+<div id="auth-section">
+    <input type="text" id="username" placeholder="Gebruikersnaam">
+    <input type="password" id="password" placeholder="Wachtwoord">
+    <button id="register-btn">Registreren</button>
+    <button id="login-btn">Inloggen</button>
+    <div id="auth-message"></div>
+</div>
 
-        <!-- Registratie en login form -->
-        <div id="auth-section" class="auth-section">
-            <h2>Inloggen of Registreren</h2>
-            <input type="text" id="username" class="input-field" placeholder="Gebruikersnaam" required>
-            <input type="password" id="password" class="input-field" placeholder="Wachtwoord" required>
-            <div class="btn-container">
-                <button id="register-btn" class="btn">Registreren</button>
-                <button id="login-btn" class="btn">Inloggen</button>
-            </div>
-            <p id="auth-message" class="auth-message"></p>
-        </div>
+<div id="agenda-section" class="hidden">
+    <h2>Agenda - Welkom, <span id="user-name"></span></h2>
+    <input type="text" id="event-name" placeholder="Evenement naam">
+    <input type="date" id="event-date">
+    <button id="add-event-btn">Afspraak toevoegen</button>
+    <ul id="agenda-list"></ul>
+    <button id="logout-btn">Uitloggen</button>
+</div>
 
-        <!-- Agenda gedeelte -->
-        <div id="agenda-section" class="agenda-section hidden">
-            <h2>Welkom, <span id="user-name"></span></h2>
-            <h3>Jouw Agenda</h3>
-            <ul id="agenda-list" class="agenda-list"></ul>
-
-            <h3>Voeg een afspraak toe</h3>
-            <input type="text" id="event-name" class="input-field" placeholder="Event Naam">
-            <input type="date" id="event-date" class="input-field">
-            <button id="add-event-btn" class="btn">Toevoegen</button>
-
-            <h3>Log uit</h3>
-            <button id="logout-btn" class="btn btn-logout">Log uit</button>
-        </div>
-
-        <!-- Admin gedeelte -->
-        <div id="admin-section" class="admin-section hidden">
-            <h2>Admin weergave</h2>
-            <h3 id="admin-header"></h3>
-            <ul id="admin-agenda-list" class="agenda-list"></ul>
-            <h3>Log uit</h3>
-            <button id="admin-logout-btn" class="btn btn-logout">Log uit</button>
-        </div>
-    </div>
-
-    <script src="agenda.js"></script>
-</body>
-</html>
+<div id="admin-section" class="hidden">
+    <h2 id="admin-header">Admin Weergave</h2>
+    <ul id="admin-agenda-list"></ul>
+    <button id="admin-logout-btn">Admin Uitloggen</button>
+</div>
