@@ -7,20 +7,32 @@
     <title>Agenda App</title>
 </head>
 <body>
-    <div id="auth-section">
+    <div id="start-page">
+        <h1>Welkom bij de Agenda App!</h1>
+        <p>Met deze app kun je gemakkelijk je taken en evenementen beheren.</p>
+        <p>Om een taak toe te voegen, moet je eerst inloggen of registreren:</p>
+        <ul>
+            <li><strong>Registreren:</strong> Maak een account om je eigen agenda te beheren.</li>
+            <li><strong>Inloggen:</strong> Log in met je account om toegang te krijgen tot je agenda.</li>
+        </ul>
+        <button id="register-btn">Registreren</button>
+        <button id="login-btn">Inloggen</button>
+    </div>
+
+    <div id="auth-section" class="hidden">
         <h2>Inloggen / Registreren</h2>
         <input type="text" id="username" placeholder="Gebruikersnaam">
         <input type="password" id="password" placeholder="Wachtwoord">
-        <button id="register-btn">Registreren</button>
-        <button id="login-btn">Inloggen</button>
         <div id="auth-message"></div>
+        <button id="confirm-register-btn" class="hidden">Registreren</button>
+        <button id="confirm-login-btn" class="hidden">Inloggen</button>
     </div>
 
     <div id="agenda-section" class="hidden">
         <h2>Agenda - Welkom, <span id="user-name"></span></h2>
         <input type="text" id="event-name" placeholder="Evenement naam">
         <input type="date" id="event-date">
-        <button id="add-event-btn">Taak Toevoegen</button>
+        <button id="add-event-btn">Evenement Toevoegen</button>
         <ul id="agenda-list"></ul>
         <button id="logout-btn">Uitloggen</button>
     </div>
