@@ -159,13 +159,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Uitloggen functie
     logoutBtn.addEventListener('click', () => {
-        agendaSection.classList.add('hidden');
         authSection.classList.remove('hidden');
+        agendaSection.classList.add('hidden');
+        usernameInput.value = '';
+        passwordInput.value = '';
     });
 
+    // Admin uitloggen functie
     adminLogoutBtn.addEventListener('click', () => {
-        adminSection.classList.add('hidden');
         authSection.classList.remove('hidden');
+        adminSection.classList.add('hidden');
     });
 });
