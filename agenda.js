@@ -9,9 +9,9 @@ const userNameDisplay = document.getElementById('user-name');
 const agendaList = document.getElementById('agenda-list');
 const eventNameInput = document.getElementById('event-name');
 const eventDateInput = document.getElementById('event-date');
+const adminAccountsList = document.getElementById('admin-accounts-list');
 const adminAgendaList = document.getElementById('admin-agenda-list');
-const accountSelect = document.getElementById('account-select');
-const adminHeader = document.getElementById('admin-header');
+const adminViewHeader = document.getElementById('admin-view-header');
 const adminAccountName = document.getElementById('admin-account-name');
 
 // Knoppen
@@ -22,10 +22,10 @@ const logoutBtn = document.getElementById('logout-btn');
 const adminLogoutBtn = document.getElementById('admin-logout-btn');
 
 // Admin gegevens
-const adminUsername = "Admin";
-const adminPassword = "Admin123";
+const adminUsername = "Adminestrator";
+const adminPassword = "Admin";
 
-// Gebruiker opslaan in Local Storage met wachtwoord
+// Gebruiker opslaan in een aparte JSON file
 function saveUser(username, password) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     users.push({ username, password, agenda: [] });
@@ -61,7 +61,7 @@ function login(username, password) {
     if (username === adminUsername && password === adminPassword) {
         authSection.classList.add('hidden');
         adminSection.classList.remove('hidden');
-        populateAccountSelect();
+        displayAdminAccounts();
         return;
     }
 
@@ -99,92 +99,82 @@ function displayAgenda(username) {
     });
 }
 
-// Admin agenda weergeven
+// Admin: Accounts weergeven
+function displayAdminAccounts() {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    adminAccountsList.innerHTML = '';
+    users.forEach(user => {
+        if (user.username !== adminUsername) {
+            const li = document.createElement('li');
+            li.classList.add('agenda-item');
+            li.innerHTML = `${user.username} <button class="view-account-btn" data-username="${user.username}">Bekijk Planner</button>`;
+            adminAccountsList.appendChild(li);
+        }
+    });
+}
+
+// Admin: Planner van geselecteerd account weergeven
 function displayAdminAgenda(username) {
     const agenda = getUserAgenda(username);
     adminAgendaList.innerHTML = '';
     agenda.forEach((event, index) => {
         const li = document.createElement('li');
+        li.classList.add('agenda-item');
         li.innerHTML = `${event.name} op ${event.date}`;
         adminAgendaList.appendChild(li);
     });
+    adminViewHeader.classList.remove('hidden');
+    adminAccountName.textContent = username;
+    adminAgendaList.classList.remove('hidden');
 }
 
-// Admin kan accounts selecteren
-function populateAccountSelect() {
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    accountSelect.innerHTML = '';
-    users.forEach(user => {
-        if (user.username !== adminUsername) {
-            const option = document.createElement('option');
-            option.value = user.username;
-            option.textContent = user.username;
-            accountSelect.appendChild(option);
-        }
-    });
-
-    accountSelect.addEventListener('change', (e) => {
-        const selectedUser = e.target.value;
-        adminHeader.classList.remove('hidden');
-        adminAccountName.textContent = `Account: ${selectedUser}`;
-        displayAdminAgenda(selectedUser);
-    });
-}
-
-// Event Listener voor registratie
+// Event Listeners
 registerBtn.addEventListener('click', () => {
     const username = usernameInput.value;
     const password = passwordInput.value;
-    if (username && password) {
-        register(username, password);
-    } else {
-        authMessage.textContent = 'Vul alstublieft beide velden in!';
-    }
+    register(username, password);
 });
 
-// Event Listener voor inloggen
 loginBtn.addEventListener('click', () => {
     const username = usernameInput.value;
     const password = passwordInput.value;
-    if (username && password) {
-        login(username, password);
-    } else {
-        authMessage.textContent = 'Vul alstublieft beide velden in!';
-    }
+    login(username, password);
 });
 
-// Event Listener voor toevoegen van event
 addEventBtn.addEventListener('click', () => {
-    const username = userNameDisplay.textContent;
     const eventName = eventNameInput.value;
     const eventDate = eventDateInput.value;
+    const username = userNameDisplay.textContent;
     if (eventName && eventDate) {
         const agenda = getUserAgenda(username);
         agenda.push({ name: eventName, date: eventDate });
         saveUserAgenda(username, agenda);
         displayAgenda(username);
-        eventNameInput.value = '';
-        eventDateInput.value = '';
-    } else {
-        authMessage.textContent = 'Vul alstublieft beide velden in!';
     }
 });
 
-// Event Listener voor uitloggen
 logoutBtn.addEventListener('click', () => {
-    agendaSection.classList.add('hidden');
     authSection.classList.remove('hidden');
+    agendaSection.classList.add('hidden');
     usernameInput.value = '';
     passwordInput.value = '';
-    userNameDisplay.textContent = '';
 });
 
-// Event Listener voor admin uitloggen
 adminLogoutBtn.addEventListener('click', () => {
-    adminSection.classList.add('hidden');
     authSection.classList.remove('hidden');
+    adminSection.classList.add('hidden');
+    adminViewHeader.classList.add('hidden');
+    adminAgendaList.classList.add('hidden');
     usernameInput.value = '';
     passwordInput.value = '';
+});
+
+// Admin: Event listener voor account bekijken
+adminAccountsList.addEventListener('click', (e) => {
+    if (e.target.classList.contains('view-account-btn')) {
+        const username = e.target.getAttribute('data-username');
+        displayAdminAgenda(username);
+    }
 });
 
 // Event Listener voor verwijderen van event
