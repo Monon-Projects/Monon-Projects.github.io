@@ -154,6 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
             agenda.push({ name: eventName, date: eventDate });
             saveUserAgenda(username, agenda);
             displayAgenda(username);
+            eventNameInput.value = ''; // Reset het event naam veld
+            eventDateInput.value = ''; // Reset het event datum veld
         }
     });
 
