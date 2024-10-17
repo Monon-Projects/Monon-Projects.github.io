@@ -171,7 +171,6 @@ registerBtn.addEventListener('click', () => {
     const password = passwordInput.value;
     register(username, password);
 });
-
 loginBtn.addEventListener('click', () => {
     const username = usernameInput.value;
     const password = passwordInput.value;
