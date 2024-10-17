@@ -1,22 +1,36 @@
-<div id="auth-section">
-    <input type="text" id="username" placeholder="Gebruikersnaam">
-    <input type="password" id="password" placeholder="Wachtwoord">
-    <button id="register-btn">Registreren</button>
-    <button id="login-btn">Inloggen</button>
-    <div id="auth-message"></div>
-</div>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Agenda App</title>
+</head>
+<body>
+    <div id="auth-section">
+        <h2>Inloggen / Registreren</h2>
+        <input type="text" id="username" placeholder="Gebruikersnaam">
+        <input type="password" id="password" placeholder="Wachtwoord">
+        <button id="register-btn">Registreren</button>
+        <button id="login-btn">Inloggen</button>
+        <div id="auth-message"></div>
+    </div>
 
-<div id="agenda-section" class="hidden">
-    <h2>Agenda - Welkom, <span id="user-name"></span></h2>
-    <input type="text" id="event-name" placeholder="Evenement naam">
-    <input type="date" id="event-date">
-    <button id="add-event-btn">Afspraak toevoegen</button>
-    <ul id="agenda-list"></ul>
-    <button id="logout-btn">Uitloggen</button>
-</div>
+    <div id="agenda-section" class="hidden">
+        <h2>Agenda - Welkom, <span id="user-name"></span></h2>
+        <input type="text" id="event-name" placeholder="Evenement naam">
+        <input type="date" id="event-date">
+        <button id="add-event-btn">Taak Toevoegen</button>
+        <ul id="agenda-list"></ul>
+        <button id="logout-btn">Uitloggen</button>
+    </div>
 
-<div id="admin-section" class="hidden">
-    <h2 id="admin-header">Admin Weergave</h2>
-    <ul id="admin-agenda-list"></ul>
-    <button id="admin-logout-btn">Admin Uitloggen</button>
-</div>
+    <div id="admin-section" class="hidden">
+        <h2 id="admin-header">Admin Weergave</h2>
+        <ul id="admin-agenda-list"></ul>
+        <button id="admin-logout-btn">Admin Uitloggen</button>
+    </div>
+
+    <script src="agenda.js"></script>
+</body>
+</html>
