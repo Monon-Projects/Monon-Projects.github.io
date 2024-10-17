@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #0073e6;
+    margin-bottom: 20px;
+}
+
+.auth-section,
+.agenda-section {
+    margin-bottom: 20px;
+}
+
+input.input-field {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.btn {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+.btn:hover {
+    background-color: #005bb5;
+}
+
+.btn-logout {
+    background-color: #ff4d4d;
+}
+
+.btn-logout:hover {
+    background-color: #cc0000;
+}
+
+.auth-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.agenda-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.agenda-item {
+    background-color: #f9f9f9;
+    border-left: 5px solid #0073e6;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.hidden {
+    display: none;
+}
