@@ -3,46 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notities en Samenvattingen Platform</title>
     <link rel="stylesheet" href="style.css">
-    <title>Agenda App</title>
 </head>
 <body>
-    <div id="start-page">
-        <h1>Welkom bij de Agenda App!</h1>
-        <p>Met deze app kun je gemakkelijk je taken en evenementen beheren.</p>
-        <p>Om een taak toe te voegen, moet je eerst inloggen of registreren:</p>
-        <ul>
-            <li><strong>Registreren:</strong> Maak een account om je eigen agenda te beheren.</li>
-            <li><strong>Inloggen:</strong> Log in met je account om toegang te krijgen tot je agenda.</li>
-        </ul>
-        <button id="register-btn">Registreren</button>
-        <button id="login-btn">Inloggen</button>
-    </div>
+    <header>
+        <h1>Notities en Samenvattingen</h1>
+        <p>Deel je notities en help je medeleerlingen!</p>
+    </header>
 
-    <div id="auth-section" class="hidden">
-        <h2>Inloggen / Registreren</h2>
-        <input type="text" id="username" placeholder="Gebruikersnaam">
-        <input type="password" id="password" placeholder="Wachtwoord">
-        <div id="auth-message"></div>
-        <button id="confirm-register-btn" class="hidden">Registreren</button>
-        <button id="confirm-login-btn" class="hidden">Inloggen</button>
-    </div>
+    <main>
+        <section id="upload-section">
+            <h2>Upload je Notities</h2>
+            <form id="upload-form">
+                <label for="subject">Vak:</label>
+                <input type="text" id="subject" name="subject" required placeholder="Bijv. Wiskunde, Geschiedenis">
 
-    <div id="agenda-section" class="hidden">
-        <h2>Agenda - Welkom, <span id="user-name"></span></h2>
-        <input type="text" id="event-name" placeholder="Evenement naam">
-        <input type="date" id="event-date">
-        <button id="add-event-btn">Evenement Toevoegen</button>
-        <ul id="agenda-list"></ul>
-        <button id="logout-btn">Uitloggen</button>
-    </div>
+                <label for="tags">Tags:</label>
+                <input type="text" id="tags" name="tags" required placeholder="Bijv. Algebra, Tweede Wereldoorlog">
 
-    <div id="admin-section" class="hidden">
-        <h2 id="admin-header">Admin Weergave</h2>
-        <ul id="admin-agenda-list"></ul>
-        <button id="admin-logout-btn">Admin Uitloggen</button>
-    </div>
+                <label for="file">Upload bestand:</label>
+                <input type="file" id="file" name="file" accept=".pdf,.doc,.docx">
 
-    <script src="agenda.js"></script>
+                <label for="text">Of voeg notities toe als tekst:</label>
+                <textarea id="text" name="text" rows="4" placeholder="Schrijf je notities hier..."></textarea>
+
+                <button type="submit">Uploaden</button>
+            </form>
+        </section>
+
+        <section id="notes-section">
+            <h2>Gedeelde Notities</h2>
+            <div id="notes-container">
+                <!-- Notities en samenvattingen zullen hier verschijnen -->
+            </div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
 </body>
 </html>
