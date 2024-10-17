@@ -94,13 +94,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Afspraken weergeven
     function displayAgenda(username) {
         const agenda = getUserAgenda(username);
-        agendaList.innerHTML = '';
-        agenda.forEach((event, index) => {
-            const li = document.createElement('li');
-            li.classList.add('agenda-item');
-            li.innerHTML = `${event.name} op ${event.date} <button class="delete-btn" data-index="${index}">Verwijderen</button>`;
-            agendaList.appendChild(li);
-        });
+        agendaList.innerHTML = ''; // Leeg de lijst voordat je deze opnieuw invult
+        if (agenda.length === 0) {
+            agendaList.innerHTML = '<li>Geen taken gevonden.</li>'; // Toon bericht als er geen taken zijn
+        } else {
+            agenda.forEach((event, index) => {
+                const li = document.createElement('li');
+                li.classList.add('agenda-item');
+                li.innerHTML = `${event.name} op ${event.date} <button class="delete-btn" data-index="${index}">Verwijderen</button>`;
+                agendaList.appendChild(li);
+            });
+        }
     }
 
     // Admin accounts weergeven
@@ -120,21 +124,25 @@ document.addEventListener('DOMContentLoaded', () => {
     adminAgendaList.addEventListener('click', (e) => {
         if (e.target.classList.contains('select-account-btn')) {
             const selectedUser = e.target.getAttribute('data-username');
-            adminHeader.textContent = `Admin weergave: ${selectedUser}`;
-            displayAgenda(selectedUser); // Weergave van geselecteerde agenda
+            userNameDisplay.textContent = selectedUser;
+            displayAgenda(selectedUser);
+            adminHeader.textContent = `Admin Weergave - Agenda van ${selectedUser}`;
+            adminSection.classList.add('hidden');
+            agendaSection.classList.remove('hidden');
         }
     });
 
-    // Verwijder event
-    agendaList.addEventListener('click', (e) => {
-        if (e.target.classList.contains('delete-btn')) {
-            const index = e.target.getAttribute('data-index');
-            const username = userNameDisplay.textContent;
-            const agenda = getUserAgenda(username);
-            agenda.splice(index, 1);
-            saveUserAgenda(username, agenda);
-            displayAgenda(username);
-        }
+    // Evenement toevoegen
+    addEventBtn.addEventListener('click', () => {
+        const username = userNameDisplay.textContent;
+        const eventName = eventNameInput.value;
+        const eventDate = eventDateInput.value;
+        const agenda = getUserAgenda(username);
+        agenda.push({ name: eventName, date: eventDate });
+        saveUserAgenda(username, agenda);
+        displayAgenda(username);
+        eventNameInput.value = '';
+        eventDateInput.value = '';
     });
 
     // Knop functies
@@ -143,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startPage.classList.add('hidden');
         confirmRegisterBtn.classList.remove('hidden');
         confirmLoginBtn.classList.add('hidden');
+        authMessage.textContent = ''; // Reset het bericht
     });
 
     loginBtn.addEventListener('click', () => {
@@ -150,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startPage.classList.add('hidden');
         confirmRegisterBtn.classList.add('hidden');
         confirmLoginBtn.classList.remove('hidden');
+        authMessage.textContent = ''; // Reset het bericht
     });
 
     confirmRegisterBtn.addEventListener('click', () => {
@@ -166,18 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
         login(username, password);
         usernameInput.value = '';
         passwordInput.value = '';
-    });
-
-    addEventBtn.addEventListener('click', () => {
-        const username = userNameDisplay.textContent;
-        const eventName = eventNameInput.value;
-        const eventDate = eventDateInput.value;
-        const agenda = getUserAgenda(username);
-        agenda.push({ name: eventName, date: eventDate });
-        saveUserAgenda(username, agenda);
-        displayAgenda(username);
-        eventNameInput.value = '';
-        eventDateInput.value = '';
     });
 
     // Uitloggen functie
