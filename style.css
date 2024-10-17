@@ -5,16 +5,35 @@ body {
     padding: 20px;
 }
 
-h2 {
+h1, h2 {
     color: #333;
 }
 
-#auth-section, #agenda-section, #admin-section {
+#start-page, #auth-section, #agenda-section, #admin-section {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #218838;
 }
 
 input[type="text"], input[type="password"], input[type="date"] {
@@ -25,30 +44,12 @@ input[type="text"], input[type="password"], input[type="date"] {
     border-radius: 4px;
 }
 
-button {
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
+.hidden {
+    display: none;
 }
 
 .agenda-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.hidden {
-    display: none;
 }
