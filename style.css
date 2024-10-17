@@ -1,39 +1,29 @@
-/* Baseline styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    color: #333;
     margin: 0;
-    padding: 20px;
-    text-align: center;
+    padding: 0;
 }
 
 .container {
     max-width: 600px;
-    margin: 0 auto;
-}
-
-.hidden {
-    display: none;
-}
-
-.main-title {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.auth-section, .agenda-section, .admin-section {
-    background-color: #fff;
+    margin: 20px auto;
+    background: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-title {
+    text-align: center;
 }
 
 .input-field {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 .btn-container {
@@ -42,33 +32,31 @@ body {
 }
 
 .btn {
-    background-color: #3498db;
-    color: white;
     padding: 10px 20px;
     border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
     cursor: pointer;
-    font-size: 16px;
 }
 
-.btn:hover {
-    background-color: #2980b9;
+.btn-logout {
+    background-color: #e74c3c;
 }
 
-.auth-message {
-    color: red;
-    margin-top: 10px;
+.agenda-section.hidden, .admin-section.hidden, .admin-agenda-list.hidden, .admin-view-header.hidden {
+    display: none;
 }
 
 .agenda-item {
     list-style: none;
-    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.agenda-item button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-left: 10px;
+.auth-message {
+    color: red;
 }
