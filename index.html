@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monon Planner</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="agenda.js"></script>
 </head>
 <body>
     <div class="container">
@@ -40,13 +39,14 @@
 
         <!-- Admin gedeelte -->
         <div id="admin-section" class="admin-section hidden">
-            <h2>Beheer Planners (Admin)</h2>
-            <h2 id="admin-view-header" class="hidden">Admin weergave: <span id="admin-account-name"></span></h2>
-            <ul id="admin-accounts-list" class="agenda-list"></ul>
-            <ul id="admin-agenda-list" class="agenda-list hidden"></ul>
+            <h2>Admin weergave</h2>
+            <h3 id="admin-header"></h3>
+            <ul id="admin-agenda-list" class="agenda-list"></ul>
             <h3>Log uit</h3>
             <button id="admin-logout-btn" class="btn btn-logout">Log uit</button>
         </div>
     </div>
+
+    <script src="agenda.js"></script>
 </body>
 </html>
