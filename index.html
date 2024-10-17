@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monon Planner</title>
+    <title>School Agenda</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="agenda.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1 class="main-title">Monon Planner</h1>
+        <h1 class="main-title">School Agenda</h1>
 
         <!-- Registratie en login form -->
         <div id="auth-section" class="auth-section">
             <h2>Inloggen of Registreren</h2>
             <input type="text" id="username" class="input-field" placeholder="Gebruikersnaam" required>
+            <input type="password" id="password" class="input-field" placeholder="Wachtwoord" required>
             <div class="btn-container">
                 <button id="register-btn" class="btn">Registreren</button>
                 <button id="login-btn" class="btn">Inloggen</button>
@@ -28,13 +29,21 @@
             <h3>Jouw Agenda</h3>
             <ul id="agenda-list" class="agenda-list"></ul>
 
-            <h3>Voeg een taak toe</h3>
+            <h3>Voeg een afspraak toe</h3>
             <input type="text" id="event-name" class="input-field" placeholder="Event Naam">
             <input type="date" id="event-date" class="input-field">
             <button id="add-event-btn" class="btn">Toevoegen</button>
 
             <h3>Log uit</h3>
             <button id="logout-btn" class="btn btn-logout">Log uit</button>
+        </div>
+
+        <!-- Admin gedeelte -->
+        <div id="admin-section" class="admin-section hidden">
+            <h2>Beheer Planners (Admin)</h2>
+            <ul id="admin-agenda-list" class="agenda-list"></ul>
+            <h3>Log uit</h3>
+            <button id="admin-logout-btn" class="btn btn-logout">Log uit</button>
         </div>
     </div>
 </body>
