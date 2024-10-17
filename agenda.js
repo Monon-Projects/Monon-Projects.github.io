@@ -19,8 +19,8 @@ const logoutBtn = document.getElementById('logout-btn');
 const adminLogoutBtn = document.getElementById('admin-logout-btn');
 
 // Admin gegevens
-const adminUsername = "admin";
-const adminPassword = "admin123";
+const adminUsername = "Adminestrator";
+const adminPassword = "Admin";
 
 // Gebruiker opslaan in Local Storage met wachtwoord
 function saveUser(username, password) {
