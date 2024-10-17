@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Selecteer HTML-elementen
+    const startPage = document.getElementById('start-page');
     const authSection = document.getElementById('auth-section');
     const agendaSection = document.getElementById('agenda-section');
     const adminSection = document.getElementById('admin-section');
@@ -16,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Knoppen
     const registerBtn = document.getElementById('register-btn');
     const loginBtn = document.getElementById('login-btn');
+    const confirmRegisterBtn = document.getElementById('confirm-register-btn');
+    const confirmLoginBtn = document.getElementById('confirm-login-btn');
     const addEventBtn = document.getElementById('add-event-btn');
     const logoutBtn = document.getElementById('logout-btn');
     const adminLogoutBtn = document.getElementById('admin-logout-btn');
@@ -59,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function login(username, password) {
         if (username === adminUsername && password === adminPassword) {
             authSection.classList.add('hidden');
+            startPage.classList.add('hidden');
             adminSection.classList.remove('hidden');
             displayAdminAccounts();
             return;
@@ -68,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (user && user.password === password) {
             userNameDisplay.textContent = username;
             authSection.classList.add('hidden');
+            startPage.classList.add('hidden');
             agendaSection.classList.remove('hidden');
             displayAgenda(username);
         } else {
@@ -132,37 +137,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Event Listeners voor login, registratie en events toevoegen
+    // Knop functies
     registerBtn.addEventListener('click', () => {
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value.trim();
-        register(username, password);
+        authSection.classList.remove('hidden');
+        startPage.classList.add('hidden');
+        confirmRegisterBtn.classList.remove('hidden');
+        confirmLoginBtn.classList.add('hidden');
     });
 
     loginBtn.addEventListener('click', () => {
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value.trim();
+        authSection.classList.remove('hidden');
+        startPage.classList.add('hidden');
+        confirmRegisterBtn.classList.add('hidden');
+        confirmLoginBtn.classList.remove('hidden');
+    });
+
+    confirmRegisterBtn.addEventListener('click', () => {
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+        register(username, password);
+        usernameInput.value = '';
+        passwordInput.value = '';
+    });
+
+    confirmLoginBtn.addEventListener('click', () => {
+        const username = usernameInput.value;
+        const password = passwordInput.value;
         login(username, password);
+        usernameInput.value = '';
+        passwordInput.value = '';
     });
 
     addEventBtn.addEventListener('click', () => {
-        const eventName = eventNameInput.value.trim();
-        const eventDate = eventDateInput.value;
         const username = userNameDisplay.textContent;
-        if (eventName && eventDate) {
-            const agenda = getUserAgenda(username);
-            agenda.push({ name: eventName, date: eventDate });
-            saveUserAgenda(username, agenda);
-            displayAgenda(username);
-            eventNameInput.value = ''; // Reset het event naam veld
-            eventDateInput.value = ''; // Reset het event datum veld
-        }
+        const eventName = eventNameInput.value;
+        const eventDate = eventDateInput.value;
+        const agenda = getUserAgenda(username);
+        agenda.push({ name: eventName, date: eventDate });
+        saveUserAgenda(username, agenda);
+        displayAgenda(username);
+        eventNameInput.value = '';
+        eventDateInput.value = '';
     });
 
     // Uitloggen functie
     logoutBtn.addEventListener('click', () => {
         authSection.classList.remove('hidden');
         agendaSection.classList.add('hidden');
+        startPage.classList.remove('hidden');
         usernameInput.value = '';
         passwordInput.value = '';
     });
@@ -171,5 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
     adminLogoutBtn.addEventListener('click', () => {
         authSection.classList.remove('hidden');
         adminSection.classList.add('hidden');
+        startPage.classList.remove('hidden');
     });
 });
