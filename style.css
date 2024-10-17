@@ -2,54 +2,72 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
-}
-
-h1, h2 {
-    color: #333;
-}
-
-#start-page, #auth-section, #agenda-section, #admin-section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-ul {
-    list-style-type: none;
     padding: 0;
 }
 
-button {
-    padding: 10px 15px;
-    background-color: #28a745;
+header {
+    background-color: #4CAF50;
     color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 5px;
+    text-align: center;
+    padding: 10px 0;
 }
 
-button:hover {
-    background-color: #218838;
-}
-
-input[type="text"], input[type="password"], input[type="date"] {
-    width: 100%;
+h1, h2 {
+    margin: 0;
     padding: 10px;
-    margin: 10px 0;
+}
+
+main {
+    margin: 20px;
+}
+
+#upload-section, #notes-section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+}
+
+input, textarea, button {
+    padding: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-.hidden {
-    display: none;
+button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
 }
 
-.agenda-item {
+button:hover {
+    background-color: #45a049;
+}
+
+#notes-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+}
+
+.note-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fafafa;
+    border-radius: 4px;
+}
+
+.rating {
+    color: gold;
+    margin-top: 10px;
 }
