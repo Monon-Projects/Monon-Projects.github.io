@@ -1,64 +1,83 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const uploadForm = document.getElementById("upload-form");
-    const notesContainer = document.getElementById("notes-container");
+const boardSize = 10;
+const winLength = 5;
+let currentPlayer = 'X';
+let board = [];
+let gameActive = true;
 
-    // Placeholder array for storing notes
-    let notes = [];
+const gameBoard = document.getElementById('game-board');
+const messageDisplay = document.getElementById('message');
+const resetButton = document.getElementById('reset-button');
 
-    // Event listener for the upload form
-    uploadForm.addEventListener("submit", (e) => {
-        e.preventDefault();
+function createBoard() {
+    board = Array(boardSize).fill(null).map(() => Array(boardSize).fill(''));
+    gameBoard.innerHTML = '';
+    for (let row = 0; row < boardSize; row++) {
+        for (let col = 0; col < boardSize; col++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.dataset.row = row;
+            cell.dataset.col = col;
+            cell.addEventListener('click', handleCellClick);
+            gameBoard.appendChild(cell);
+        }
+    }
+}
 
-        const subject = document.getElementById("subject").value;
-        const tags = document.getElementById("tags").value;
-        const fileInput = document.getElementById("file").files[0];
-        const textInput = document.getElementById("text").value;
+function handleCellClick(event) {
+    if (!gameActive) return;
+    const row = event.target.dataset.row;
+    const col = event.target.dataset.col;
 
-        // Create a note object
-        const note = {
-            subject: subject,
-            tags: tags.split(',').map(tag => tag.trim()),  // Splits tags by comma
-            file: fileInput ? fileInput.name : null,
-            text: textInput,
-            rating: 0
-        };
+    if (board[row][col] === '') {
+        board[row][col] = currentPlayer;
+        event.target.textContent = currentPlayer;
+        if (checkWin(row, col)) {
+            gameActive = false;
+            messageDisplay.textContent = `${currentPlayer} wins!`;
+        } else if (board.flat().every(cell => cell !== '')) {
+            messageDisplay.textContent = 'It\'s a draw!';
+        } else {
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        }
+    }
+}
 
-        // Add the note to the array
-        notes.push(note);
-        displayNotes();
+function checkWin(row, col) {
+    row = parseInt(row);
+    col = parseInt(col);
 
-        // Reset form
-        uploadForm.reset();
-    });
-
-    // Function to display notes in the notes container
-    function displayNotes() {
-        notesContainer.innerHTML = "";
-
-        notes.forEach((note, index) => {
-            const noteDiv = document.createElement("div");
-            noteDiv.classList.add("note-item");
-
-            noteDiv.innerHTML = `
-                <h3>${note.subject}</h3>
-                <p><strong>Tags:</strong> ${note.tags.join(", ")}</p>
-                ${note.file ? `<p><strong>Bestand:</strong> ${note.file}</p>` : ""}
-                ${note.text ? `<p><strong>Notities:</strong> ${note.text}</p>` : ""}
-                <p><strong>Rating:</strong> <span class="rating">${'★'.repeat(note.rating)}</span></p>
-                <button onclick="rateNote(${index}, 1)">👍</button>
-                <button onclick="rateNote(${index}, -1)">👎</button>
-            `;
-
-            notesContainer.appendChild(noteDiv);
-        });
+    function checkDirection(deltaRow, deltaCol) {
+        let count = 0;
+        let r = row, c = col;
+        while (r >= 0 && r < boardSize && c >= 0 && c < boardSize && board[r][c] === currentPlayer) {
+            count++;
+            r += deltaRow;
+            c += deltaCol;
+        }
+        return count;
     }
 
-    // Function to rate notes
-    window.rateNote = function(index, value) {
-        notes[index].rating += value;
-        if (notes[index].rating < 0) {
-            notes[index].rating = 0;
-        }
-        displayNotes();
-    };
+    const directions = [
+        [[0, 1], [0, -1]],  // Horizontal
+        [[1, 0], [-1, 0]],  // Vertical
+        [[1, 1], [-1, -1]], // Diagonal (top-left to bottom-right)
+        [[1, -1], [-1, 1]]  // Diagonal (bottom-left to top-right)
+    ];
+
+    for (const [[deltaRow1, deltaCol1], [deltaRow2, deltaCol2]] of directions) {
+        const count = checkDirection(deltaRow1, deltaCol1) + checkDirection(deltaRow2, deltaCol2) - 1;
+        if (count >= winLength) return true;
+    }
+
+    return false;
+}
+
+resetButton.addEventListener('click', () => {
+    gameActive = true;
+    currentPlayer = 'X';
+    messageDisplay.textContent = '';
+    createBoard();
 });
+
+// Initialize the game board on load
+createBoard();
