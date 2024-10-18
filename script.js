@@ -1,83 +1,110 @@
-const boardSize = 10;
-const winLength = 5;
+const boardSize = 3;
 let currentPlayer = 'X';
-let board = [];
+let superBoard = [];
 let gameActive = true;
 
-const gameBoard = document.getElementById('game-board');
+const superBoardElement = document.getElementById('super-board');
 const messageDisplay = document.getElementById('message');
 const resetButton = document.getElementById('reset-button');
 
-function createBoard() {
-    board = Array(boardSize).fill(null).map(() => Array(boardSize).fill(''));
-    gameBoard.innerHTML = '';
+function createSuperBoard() {
+    superBoard = Array(boardSize).fill(null).map(() => 
+        Array(boardSize).fill(null).map(() => Array(boardSize).fill(''))
+    );
+    
+    superBoardElement.innerHTML = '';
+    
     for (let row = 0; row < boardSize; row++) {
         for (let col = 0; col < boardSize; col++) {
-            const cell = document.createElement('div');
-            cell.classList.add('cell');
-            cell.dataset.row = row;
-            cell.dataset.col = col;
-            cell.addEventListener('click', handleCellClick);
-            gameBoard.appendChild(cell);
+            const subBoard = document.createElement('div');
+            subBoard.classList.add('sub-board');
+            subBoard.dataset.row = row;
+            subBoard.dataset.col = col;
+
+            for (let subRow = 0; subRow < boardSize; subRow++) {
+                for (let subCol = 0; subCol < boardSize; subCol++) {
+                    const cell = document.createElement('div');
+                    cell.classList.add('cell');
+                    cell.dataset.row = row;
+                    cell.dataset.col = col;
+                    cell.dataset.subRow = subRow;
+                    cell.dataset.subCol = subCol;
+                    cell.addEventListener('click', handleCellClick);
+                    subBoard.appendChild(cell);
+                }
+            }
+
+            superBoardElement.appendChild(subBoard);
         }
     }
 }
 
 function handleCellClick(event) {
     if (!gameActive) return;
+    
     const row = event.target.dataset.row;
     const col = event.target.dataset.col;
+    const subRow = event.target.dataset.subRow;
+    const subCol = event.target.dataset.subCol;
 
-    if (board[row][col] === '') {
-        board[row][col] = currentPlayer;
+    if (superBoard[row][col][subRow][subCol] === '') {
+        superBoard[row][col][subRow][subCol] = currentPlayer;
         event.target.textContent = currentPlayer;
-        if (checkWin(row, col)) {
+        
+        if (checkWin(superBoard[row][col])) {
+            messageDisplay.textContent = `${currentPlayer} wins in sub-board [${row}, ${col}]!`;
+            disableSubBoard(row, col);
+        } else if (checkSuperWin()) {
             gameActive = false;
-            messageDisplay.textContent = `${currentPlayer} wins!`;
-        } else if (board.flat().every(cell => cell !== '')) {
-            messageDisplay.textContent = 'It\'s a draw!';
+            messageDisplay.textContent = `${currentPlayer} wins the game!`;
         } else {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
         }
     }
 }
 
-function checkWin(row, col) {
-    row = parseInt(row);
-    col = parseInt(col);
-
-    function checkDirection(deltaRow, deltaCol) {
-        let count = 0;
-        let r = row, c = col;
-        while (r >= 0 && r < boardSize && c >= 0 && c < boardSize && board[r][c] === currentPlayer) {
-            count++;
-            r += deltaRow;
-            c += deltaCol;
-        }
-        return count;
+function checkWin(subBoard) {
+    for (let i = 0; i < boardSize; i++) {
+        // Check rows and columns
+        if (subBoard[i][0] && subBoard[i].every(cell => cell === subBoard[i][0])) return true;
+        if (subBoard[0][i] && subBoard.every(row => row[i] === subBoard[0][i])) return true;
     }
 
-    const directions = [
-        [[0, 1], [0, -1]],  // Horizontal
-        [[1, 0], [-1, 0]],  // Vertical
-        [[1, 1], [-1, -1]], // Diagonal (top-left to bottom-right)
-        [[1, -1], [-1, 1]]  // Diagonal (bottom-left to top-right)
-    ];
-
-    for (const [[deltaRow1, deltaCol1], [deltaRow2, deltaCol2]] of directions) {
-        const count = checkDirection(deltaRow1, deltaCol1) + checkDirection(deltaRow2, deltaCol2) - 1;
-        if (count >= winLength) return true;
-    }
+    // Check diagonals
+    if (subBoard[0][0] && subBoard.every((row, i) => row[i] === subBoard[0][0])) return true;
+    if (subBoard[0][boardSize - 1] && subBoard.every((row, i) => row[boardSize - 1 - i] === subBoard[0][boardSize - 1])) return true;
 
     return false;
+}
+
+function checkSuperWin() {
+    for (let i = 0; i < boardSize; i++) {
+        // Check rows and columns in the super board
+        if (superBoard[i][0] && superBoard[i].every(board => board.every(row => row.every(cell => cell === currentPlayer)))) return true;
+        if (superBoard[0][i] && superBoard.every(board => board[i].every(row => row.every(cell => cell === currentPlayer)))) return true;
+    }
+
+    // Check diagonals in the super board
+    if (superBoard[0][0] && superBoard.every((board, i) => board[i].every(row => row.every(cell => cell === currentPlayer)))) return true;
+    if (superBoard[0][boardSize - 1] && superBoard.every((board, i) => board[boardSize - 1 - i].every(row => row.every(cell => cell === currentPlayer)))) return true;
+
+    return false;
+}
+
+function disableSubBoard(row, col) {
+    const subBoard = document.querySelectorAll(`[data-row='${row}'][data-col='${col}'] .cell`);
+    subBoard.forEach(cell => {
+        cell.classList.add('disabled');
+        cell.removeEventListener('click', handleCellClick);
+    });
 }
 
 resetButton.addEventListener('click', () => {
     gameActive = true;
     currentPlayer = 'X';
     messageDisplay.textContent = '';
-    createBoard();
+    createSuperBoard();
 });
 
-// Initialize the game board on load
-createBoard();
+// Initialize the super board on load
+createSuperBoard();
