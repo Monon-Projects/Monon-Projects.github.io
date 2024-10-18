@@ -8,24 +8,36 @@ h1 {
     color: #333;
 }
 
-#game-board {
+#super-board {
     display: grid;
-    grid-template-columns: repeat(10, 60px);
-    grid-gap: 5px;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 10px;
     justify-content: center;
     margin: 20px auto;
+}
+
+.sub-board {
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    grid-gap: 5px;
+    border: 2px solid #333;
 }
 
 .cell {
     width: 60px;
     height: 60px;
     background-color: #fff;
-    border: 2px solid #333;
+    border: 1px solid #333;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
     cursor: pointer;
+}
+
+.cell.disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
 }
 
 #message {
