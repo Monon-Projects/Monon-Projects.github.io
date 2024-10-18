@@ -1,44 +1,16 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notities en Samenvattingen Platform</title>
-    <link rel="stylesheet" href="style.css">
+    <title>XXL Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Notities en Samenvattingen</h1>
-        <p>Deel je notities en help je medeleerlingen!</p>
-    </header>
-
-    <main>
-        <section id="upload-section">
-            <h2>Upload je Notities</h2>
-            <form id="upload-form">
-                <label for="subject">Vak:</label>
-                <input type="text" id="subject" name="subject" required placeholder="Bijv. Wiskunde, Geschiedenis">
-
-                <label for="tags">Tags:</label>
-                <input type="text" id="tags" name="tags" required placeholder="Bijv. Algebra, Tweede Wereldoorlog">
-
-                <label for="file">Upload bestand:</label>
-                <input type="file" id="file" name="file" accept=".pdf,.doc,.docx">
-
-                <label for="text">Of voeg notities toe als tekst:</label>
-                <textarea id="text" name="text" rows="4" placeholder="Schrijf je notities hier..."></textarea>
-
-                <button type="submit">Uploaden</button>
-            </form>
-        </section>
-
-        <section id="notes-section">
-            <h2>Gedeelde Notities</h2>
-            <div id="notes-container">
-                <!-- Notities en samenvattingen zullen hier verschijnen -->
-            </div>
-        </section>
-    </main>
+    <h1>XXL Tic-Tac-Toe</h1>
+    <div id="game-board"></div>
+    <div id="message"></div>
+    <button id="reset-button">Reset Game</button>
 
     <script src="main.js"></script>
 </body>
