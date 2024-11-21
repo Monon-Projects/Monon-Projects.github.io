@@ -23,16 +23,15 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
 }
 
-.cell:nth-child(even):nth-child(odd-row),
-.cell:nth-child(odd):nth-child(even-row) {
-    background-color: #000;
+.cell.dark {
+    background-color: #8b4513;
 }
 
-.cell:nth-child(odd):nth-child(odd-row),
-.cell:nth-child(even):nth-child(even-row) {
-    background-color: #fff;
+.cell.light {
+    background-color: #f5deb3;
 }
 
 .piece {
@@ -44,8 +43,10 @@ h1 {
 
 .piece.red {
     background-color: red;
+    border: 2px solid #770000;
 }
 
 .piece.black {
     background-color: black;
+    border: 2px solid #444;
 }
